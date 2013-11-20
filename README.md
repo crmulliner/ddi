@@ -27,13 +27,18 @@ more information at:
  http://www.mulliner.org/android/
 
 slides about this toolkit:
+
  [1] http://www.mulliner.org/android/feed/mulliner_ddi_summercon2013.pdf
+ 
  [2] http://www.mulliner.org/android/feed/androidruntime_syscan13.pdf
 
 === Prerequisites ===
 
+
 Android SDK
+
 Android NDK
+
 ADBI (see below)
 
 == Build ADBI ==
@@ -43,41 +48,54 @@ git clone https://github.com/crmulliner/adbi.git
 follow readme
 
 folders should be:
+```
  adbi/
  ddi/
+```
 
 == Pull Libraries from Device ==
 
+```
 cd dalvikhook
 cd jni
 cd libs
 adb pull /system/lib/libdl.so
 adb pull /system/lib/libdvm.so
+```
 
 == Build libdalvikhook ==
 
+```
 cd dalvikhook
 cd jni
 ndk-build
+```
 
 == Build strmon example ==
 
+```
 cd examples
 cd strmon
 cd jni
 ndk-build
 cd ..
 adb push libs/armeabi/libstrmon.so /data/local/tmp
+```
 
 == How to Run strmon ==
 
+```
 adb shell
 su
 cd /data/local/tmp
 # GET PID from com.android.contacts
 ./hijack -d -p PID -l /data/local/tmp/libstrmon.so
 cat strmon.log
+```
 
+output:
+
+```
 libstrmon: started
 do_patch
 sb20.toString() = en_US
@@ -89,6 +107,8 @@ sb20.toString() = en-US
 sb7 = :
 sb7.indexOf() = -1 (i=0) \E
 sb20.toString() = \Q:\E
+```
+
 
 == Advanced Options ==
 
@@ -97,23 +117,28 @@ This is done by attaching to zygote (-z -p PID_of_zygote) and
 using the -s option to supply the main class of application (take from manifest 
 or by running 'ps' on the adb shell).
 
+```
 adb shell
 su
 cd /data/local/tmp
 # GET PID of >>> zygote <<<
 ./hijack -d -p PID -z -l /data/local/tmp/libstrmon.so -s com.android.contacts
+```
 
 == Build smsdispatch example (advanced!) ==
 
+```
 cd examples
 cd smsdispatch
 cd jni
 ndk-build
 cd ..
 adb push libs/armeabi/libsmsdispatch.so /data/local/tmp
+```
 
 == Howto Run smsdispatch ==
 
+```
 adb push ddiclasses.dex /data/local/tmp/
 adb shell
 su
@@ -121,20 +146,18 @@ cd /data/local/tmp
 chmod 777 /data/dalvik-cache/
 # GET PID from com.android.phone
 ./hijack -d -p PID -l /data/local/tmp/libsmsdispatch.so
-cat smsdispatch.log
+```
 
-# check logcat output
-adb logcat
-# send SMS message to that phone (send to yourself if you only have one phone)
+send SMS message to that phone (send to yourself if you only have one phone)
 
-# further notes
-# if you have problems that your modified version of ddiclasses.dex is not loaded you need to
-# delete /data/dalvik-cache/data@local@tmp@ddiclasses.dex
+further notes: if you have problems that your modified version of ddiclasses.dex is not loaded you need to
+remove the class from the dalvik cache ```rm /data/dalvik-cache/data@local@tmp@ddiclasses.dex```
 
-== output ==
+now inspect logfiles and logcat...
 
-logcat:
 
+```
+$ adb logcat
 SmsReceiverService( 5527): onStart: #1 mResultCode: -1 = Activity.RESULT_OK
 D/dalvikvm( 5527): GC_EXPLICIT freed 264K, 3% free 15600K/15943K, paused 2ms+4ms
 D/dalvikvm( 5515): DexOpt: --- BEGIN 'ddiclasses.dex' (bootstrap=0) ---
@@ -151,7 +174,11 @@ I/System.out( 5515): Intent { act=android.provider.Telephony.SMS_RECEIVED (has e
 I/System.out( 5515): ddiexample: appname: com.android.phone.PhoneApp@41816460
 V/SmsReceiverService( 5527): onStart: #1 mResultCode: -1 = Activity.RESULT_OK
 V/SmsReceiverService( 5527): onStart: #2 mResultCode: -1 = Activity.RESULT_OK
+```
 
+smsdispatch.log
+
+```
 cat smsdispatch.log
 
 libsmsdispatch: started
@@ -196,3 +223,4 @@ class = 0x41825c80
 libsmsdispatch: clazz = 0x41825c80
 libsmsdispatch: new obj = 0x95700025
 success calling : dispatchPdus
+```
