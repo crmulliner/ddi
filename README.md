@@ -24,7 +24,6 @@ There are two examples included in the library. The *strmon* example hooks a num
 === External Resources ===
 
 more information at: 
- http://www.mulliner.org/android/ddi/
  http://www.mulliner.org/android/
 
 slides about this toolkit:
