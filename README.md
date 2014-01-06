@@ -89,6 +89,8 @@ adb shell
 su
 cd /data/local/tmp
 # GET PID from com.android.contacts
+>/data/local/tmp/strmon.log
+chmod 777 /data/local/tmp/strmon.log
 ./hijack -d -p PID -l /data/local/tmp/libstrmon.so
 cat strmon.log
 ```
