@@ -145,6 +145,8 @@ adb push ddiclasses.dex /data/local/tmp/
 adb shell
 su
 cd /data/local/tmp
+>/data/local/tmp/smsdispatch.log
+chmod 777 /data/local/tmp/smsdispatch.log
 chmod 777 /data/dalvik-cache/
 # GET PID from com.android.phone
 ./hijack -d -p PID -l /data/local/tmp/libsmsdispatch.so
