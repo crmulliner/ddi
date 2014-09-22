@@ -44,12 +44,12 @@ static int debug;
 
 static void my_log(char *msg)
 {
-	log(msg)
+	log("%s", msg)
 }
 static void my_log2(char *msg)
 {
 	if (debug)
-		log(msg)
+		log("%s", msg)
 }
 
 static struct dalvik_hook_t sb1;
