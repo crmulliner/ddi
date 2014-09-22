@@ -33,9 +33,9 @@
 #undef log
 
 #define log(...) \
-        {FILE *fp = fopen("/data/local/tmp/strmon.log", "a+");\
+        {FILE *fp = fopen("/data/local/tmp/strmon.log", "a+"); if (fp) {\
         fprintf(fp, __VA_ARGS__);\
-        fclose(fp);}
+        fclose(fp);}}
 
 static struct hook_t eph;
 static struct dexstuff_t d;
