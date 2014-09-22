@@ -69,7 +69,7 @@ static struct dalvik_hook_t sb20;
 // helper function
 void printString(JNIEnv *env, jobject str, char *l)
 {
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("%s%s\n", l, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -84,7 +84,7 @@ static void* sb1_tostring(JNIEnv *env, jobject obj)
 	//log("success calling : %s\n", sb1.method_name)
 	dalvik_postcall(&d, &sb1);
 
-	char *s = (*env)->GetStringUTFChars(env, res, 0);
+	const char *s = (*env)->GetStringUTFChars(env, res, 0);
 	if (s) {
 		log("sb1.toString() = %s\n", s)
 		(*env)->ReleaseStringUTFChars(env, res, s); 
@@ -106,7 +106,7 @@ static void* sb20_tostring(JNIEnv *env, jobject obj)
 	//log("success calling : %s\n", sb20.method_name)
 	dalvik_postcall(&d, &sb20);
 
-	char *s = (*env)->GetStringUTFChars(env, res, 0);
+	const char *s = (*env)->GetStringUTFChars(env, res, 0);
 	if (s) {
 		log("sb20.toString() = %s\n", s)
 		(*env)->ReleaseStringUTFChars(env, res, s); 
@@ -133,7 +133,7 @@ static void* sb2_compareto(JNIEnv *env, jobject obj, jobject str)
 
 	printString(env, obj, "sb2 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb2.comapreTo() = %d s> %s\n", res, s)
 		(*env)->ReleaseStringUTFChars(env, str, s);
@@ -160,7 +160,7 @@ static void* sb3_comparetocase(JNIEnv *env, jobject obj, jobject str)
 
 	printString(env, obj, "sb3 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb3.comapreToIgnoreCase() = %d s> %s\n", res, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -188,7 +188,7 @@ static void* sb7_indexof(JNIEnv *env, jobject obj, jobject str, jint i)
 
 	printString(env, obj, "sb7 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb7.indexOf() = %d (i=%d) %s\n", res, i, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -216,7 +216,7 @@ static void* sb11_indexof(JNIEnv *env, jobject obj, jobject str, jint i)
 
 	printString(env, obj, "sb11 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb11.indexOf() = %d (i=%d) %s\n", res, i, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -244,7 +244,7 @@ static void* sb10_startswith(JNIEnv *env, jobject obj, jobject str, jint i)
 
 	printString(env, obj, "sb10 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb10.startswith() = %d (i=%d) %s\n", res, i, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -270,7 +270,7 @@ static void* sb8_matches(JNIEnv *env, jobject obj, jobject str)
 
 	printString(env, obj, "sb8 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb8.matches() = %d %s\n", res, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -296,7 +296,7 @@ static void* sb13_equalsIgnoreCase(JNIEnv *env, jobject obj, jobject str)
 
 	printString(env, obj, "sb13 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb13.equalsIgnoreCase() = %d %s\n", res, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -322,7 +322,7 @@ static void* sb14_contentEquals(JNIEnv *env, jobject obj, jobject str)
 
 	printString(env, obj, "sb14 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb14.contentEquals() = %d %s\n", res, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -348,7 +348,7 @@ static void* sb9_endswith(JNIEnv *env, jobject obj, jobject str)
 
 	printString(env, obj, "sb9 = "); 
 
-	char *s = (*env)->GetStringUTFChars(env, str, 0);
+	const char *s = (*env)->GetStringUTFChars(env, str, 0);
 	if (s) {
 		log("sb9.endswith() = %d %s\n", res, s)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
@@ -398,7 +398,7 @@ static void* sb5_getmethod(JNIEnv *env, jobject obj, jobject str, jobject cls)
 	dalvik_postcall(&d, &sb5);
 
 	if (str) {
-		char *s = (*env)->GetStringUTFChars(env, str, 0);
+		const char *s = (*env)->GetStringUTFChars(env, str, 0);
 		if (s) {
 			log("sb5.getmethod = %s\n", s)
 			(*env)->ReleaseStringUTFChars(env, str, s); 
