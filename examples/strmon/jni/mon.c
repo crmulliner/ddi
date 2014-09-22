@@ -139,7 +139,7 @@ static void* sb2_compareto(JNIEnv *env, jobject obj, jobject str)
 		(*env)->ReleaseStringUTFChars(env, str, s);
 	}
 	
-	return res;
+	return (void *)res;
 }
 
 static void* sb3_comparetocase(JNIEnv *env, jobject obj, jobject str)
@@ -166,7 +166,7 @@ static void* sb3_comparetocase(JNIEnv *env, jobject obj, jobject str)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
 	}
 
-	return res;
+	return (void *)res;
 }
 
 static void* sb7_indexof(JNIEnv *env, jobject obj, jobject str, jint i)
@@ -194,7 +194,7 @@ static void* sb7_indexof(JNIEnv *env, jobject obj, jobject str, jint i)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
 	}
 
-	return res;
+	return (void *)res;
 }
 
 static void* sb11_indexof(JNIEnv *env, jobject obj, jobject str, jint i)
@@ -222,7 +222,7 @@ static void* sb11_indexof(JNIEnv *env, jobject obj, jobject str, jint i)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
 	}
 
-	return res;
+	return (void *)res;
 }
 
 static void* sb10_startswith(JNIEnv *env, jobject obj, jobject str, jint i)
@@ -250,7 +250,7 @@ static void* sb10_startswith(JNIEnv *env, jobject obj, jobject str, jint i)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
 	}
 
-	return res;
+	return (void *)res;
 }
 
 static void* sb8_matches(JNIEnv *env, jobject obj, jobject str)
@@ -276,7 +276,7 @@ static void* sb8_matches(JNIEnv *env, jobject obj, jobject str)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
 	}
 
-	return res;
+	return (void *)res;
 }
 
 static void* sb13_equalsIgnoreCase(JNIEnv *env, jobject obj, jobject str)
@@ -302,7 +302,7 @@ static void* sb13_equalsIgnoreCase(JNIEnv *env, jobject obj, jobject str)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
 	}
 
-	return res;
+	return (void *)res;
 }
 
 static void* sb14_contentEquals(JNIEnv *env, jobject obj, jobject str)
@@ -328,7 +328,7 @@ static void* sb14_contentEquals(JNIEnv *env, jobject obj, jobject str)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
 	}
 
-	return res;
+	return (void *)res;
 }
 
 static void* sb9_endswith(JNIEnv *env, jobject obj, jobject str)
@@ -354,7 +354,7 @@ static void* sb9_endswith(JNIEnv *env, jobject obj, jobject str)
 		(*env)->ReleaseStringUTFChars(env, str, s); 
 	}
 
-	return res;
+	return (void *)res;
 }
 
 
@@ -376,7 +376,7 @@ static void* sb6_contains(JNIEnv *env, jobject obj, jobject str)
 
 	printString(env, obj, "sb6 = "); 
 
-	return res;
+	return (void *)res;
 }
 
 static void* sb5_getmethod(JNIEnv *env, jobject obj, jobject str, jobject cls)
@@ -405,7 +405,7 @@ static void* sb5_getmethod(JNIEnv *env, jobject obj, jobject str, jobject cls)
 		}
 	}
 
-	return res;
+	return (void *)res;
 }
 
 void do_patch()
