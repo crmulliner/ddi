@@ -199,7 +199,7 @@ typedef struct Method {
      */
 
     /* the actual code */
-    const u2*       insns;      
+    u2*       insns;
 	
 	 /* cached JNI argument and return-type hints */
     int             jniArgInfo;

@@ -110,7 +110,7 @@ typedef enum { false=0, true=!false } bool;
 
 #if defined(HAVE_ENDIAN_H)
 # include <endian.h>
-#else /*not HAVE_ENDIAN_H*/
+#elif !defined(__BIG_ENDIAN)
 # define __BIG_ENDIAN 4321
 # define __LITTLE_ENDIAN 1234
 # if defined(HAVE_LITTLE_ENDIAN)

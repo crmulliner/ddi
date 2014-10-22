@@ -33,9 +33,9 @@
 #undef log
 
 #define log(...) \
-        {FILE *fp = fopen("/data/local/tmp/smsdispatch.log", "a+");\
+        {FILE *fp = fopen("/data/local/tmp/smsdispatch.log", "a+"); if (fp) {\
         fprintf(fp, __VA_ARGS__);\
-        fclose(fp);}
+        fclose(fp);}}
 
 static struct hook_t eph;
 static struct dexstuff_t d;
@@ -46,12 +46,12 @@ static int debug;
 
 static void my_log(char *msg)
 {
-	log(msg)
+	log("%s", msg)
 }
 static void my_log2(char *msg)
 {
 	if (debug)
-		log(msg);
+		log("%s", msg);
 }
 
 static void my_dispatch(JNIEnv *env, jobject obj, jobjectArray pdu)
